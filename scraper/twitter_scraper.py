@@ -199,7 +199,6 @@ class Twitter_Scraper:
 
         try:
             self.driver.maximize_window()
-            self.driver.execute_script("document.body.style.zoom='150%'") #set zoom to 150%
             self.driver.get(TWITTER_LOGIN_URL)
             sleep(3)
 
@@ -496,6 +495,10 @@ It may be due to the following:
                     # Check if there is a button "Retry" and click on it with a regular basis until a certain amount of tries
                     try:
                         while retry_cnt < 15:
+
+                            if(retry_cnt==15):
+                                input('Unable to fetch tweets: SETTING MANUAL MODE (Press [ENTER] to continue)...')
+
                             retry_button = self.driver.find_element(
                             "xpath", "//span[text()='Retry']/../../..")
                             self.progress.print_progress(len(self.data), True, retry_cnt, no_tweets_limit)
