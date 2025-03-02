@@ -1,1 +1,1 @@
-python scraper --query='("NVDA" OR "nvidia") lang:en until:2024-01-19 since:2024-01-18' -t 5000 --top
+python scraper --query='("NVDA" OR "nvidia") until:2022-03-19 since:2022-03-18' -ntl
