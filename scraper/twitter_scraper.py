@@ -434,7 +434,7 @@ It may be due to the following:
         except NoSuchElementException:
             pass
 
-        self.progress.print_progress(0, False, 0, no_tweets_limit)
+        self.progress.print_progress("",0, False, 0, no_tweets_limit)
 
         refresh_count = 0
         added_tweets = 0
@@ -472,7 +472,7 @@ It may be due to the following:
                                     if not tweet.is_ad:
                                         self.data.append(tweet.tweet)
                                         added_tweets += 1
-                                        self.progress.print_progress(len(self.data), False, 0, no_tweets_limit)
+                                        self.progress.print_progress(self.data[-1][2],len(self.data), False, 0, no_tweets_limit)
 
                                         if len(self.data) >= self.max_tweets and not no_tweets_limit:
                                             self.scroller.scrolling = False
@@ -496,12 +496,12 @@ It may be due to the following:
                     try:
                         while retry_cnt < 15:
 
-                            if(retry_cnt==15):
-                                input('Unable to fetch tweets: SETTING MANUAL MODE (Press [ENTER] to continue)...')
+                            if(retry_cnt==10):
+                                input('SETTING MANUAL MODE (Press [ENTER] to continue)...')
 
                             retry_button = self.driver.find_element(
                             "xpath", "//span[text()='Retry']/../../..")
-                            self.progress.print_progress(len(self.data), True, retry_cnt, no_tweets_limit)
+                            self.progress.print_progress(self.data[-1][2],len(self.data), True, retry_cnt, no_tweets_limit)
                             sleep(600)
                             retry_button.click()
                             retry_cnt += 1
@@ -509,7 +509,7 @@ It may be due to the following:
                     # There is no Retry button so the counter is reseted
                     except NoSuchElementException:
                         retry_cnt = 0
-                        self.progress.print_progress(len(self.data), False, 0, no_tweets_limit)
+                        self.progress.print_progress(self.data[-1][2],len(self.data), False, 0, no_tweets_limit)
 
                     if empty_count >= 5:
                         if refresh_count >= 3:
@@ -543,7 +543,7 @@ It may be due to the following:
             print("Scraping Incomplete")
 
         if not no_tweets_limit:
-            print("Tweets: {} out of {}\n".format(len(self.data), self.max_tweets))
+            print("Tweets: {} out of {} :: Time: {}\n".format(len(self.data), self.max_tweets,self.data[-1][2]))
 
         pass
 
