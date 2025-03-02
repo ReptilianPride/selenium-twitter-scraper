@@ -26,8 +26,8 @@ class Progress:
                 )
             else:
                 sys.stdout.write(
-                    "\rTweets scraped : {} & T : {}                                         ".format(
-                        current,last_tweet_time
+                    "\rTweets scraped : {} & T : 16:27                                      ".format(
+                        current,last_tweet_time[11:16]
                     )
                 )
         else:
