@@ -1,0 +1,5 @@
+python yfinance_puller.py -s 2024-01-01 -e 2024-02-01
+
+OR
+
+python yfinance_puller.py -start 2024-01-01 -end 2024-02-01

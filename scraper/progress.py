@@ -20,8 +20,8 @@ class Progress:
         if no_tweets_limit:
             if waiting:
                 sys.stdout.write(
-                    "\rTweets scraped : {} - waiting to counter rate limit {}/15 tries".format(
-                        current, retry_cnt
+                    "\rTweets scraped : {} : {} - rate limit wait {}/15 tries".format(
+                        current, last_tweet_time[11:16],retry_cnt
                     )
                 )
             else:
